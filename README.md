@@ -14,3 +14,7 @@ Example features of interest in real and synthetic data: age, intracranial volum
 The correlation of the ratio of intracranial volume to lateral ventricles (%) was estimated by referring to the study below.
 
 Age-Related Differences in Brain Morphology and the Modifiers in Middle-Aged and Older Adults, Lu Zhao et al., Cerebral Cortex 2019
+
+# Acknowledgement
+
+This work was supported by Institute for Information & communications Technology Promotion(IITP) grant funded by the Korea government(MSIT) (No.00223446, Development of object-oriented synthetic data generation and evaluation methods) and the Technology Innovation Program (20011875, Development of AI-Based Diagnostic Technology for Medical Imaging Devices) funded by the Ministry of Trade, Industry & Energy (MOTIE, Korea).
