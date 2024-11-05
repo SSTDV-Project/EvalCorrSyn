@@ -6,7 +6,7 @@ Target features in real and synthetic data : age, intracranial volume, the volum
 
 In the script, 
 1) Read in a CSV file with age, intracranial volume, and lateral ventricle volume values from real and synthetic data to calculate the correlation between age and lateral ventricle volume.
-2) The correlation between age and lateral ventricle is modeled by first-, second-, and cubic equations.
+2) The correlation between age and lateral ventricle is modeled by polynominal of degree 1, 2, and 3.
 3) Select the model that best fits the data.
 4) Statistically validate the similarity between the parameters of the model estimated from the real data and those estimated from the synthetic data.
 
