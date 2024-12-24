@@ -21,24 +21,28 @@ Nboost = 20; % the number of bootstrapping
 Nsample = 500; % the number of sampling
 Norder = [1 2 3]; % the order of polynomial fitting
 PlotFlag = 1; % flag for result display, 1 for yes, 0 for no
+LineColor = [1 0 0;0 1 0;0 0 1];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Rage = RealData(:,1); % age in real data
 RLV = [RealData(:,3)./RealData(:,2)].*100; % % volume of lateral ventricle in real data
 Sage = SynData(:,1); % age in real data
-SLV = [SynData(:,3)./SynData(:,2)].*100; % % volume of lateral ventricle in real da
+SLV = [SynData(:,3)./SynData(:,2)].*100; % % volume of lateral ventricle in real data
 Xaxis = [min(Rage):0.01:max(Rage)];
+if PlotFlag
+   scatter(Rage, RLV, 'r'); xlabel('Age'); ylabel('% volume of lateral ventricle'); hold on;
+end
 for i = Norder
     [P, S] = polyfit(Rage,RLV, i);
     [y1, delta] = polyval(P,Xaxis, S);
     if PlotFlag
-        figure(i);
-        titlestring = ['polynominal fitting with order ' num2str(i)];
-        scatter(Rage, RLV); hold on;
-        plot(Xaxis, y1);
+        titlestring = ['polynominal fit'];
+        plot(Xaxis, y1, 'Color', LineColor(i,:));
         title(titlestring);
-        hold off;
     end
     Rs(i,1) = S.rsquared;
+end
+if PlotFlag
+    hold off;
 end
 LastNorder = i;
 [Rs, Mo] = min(Rs);
@@ -54,6 +58,7 @@ for i = 1:Nboost
     RPall = [RPall; RP]; SPall = [SPall; SP];
     sprintf('%d th estimation of real data ended', i)
 end
+
 for i = 1: Mo+1
     [h,p,ci,stats] = ttest2(RPall(:,i), SPall(:,i)); % 2 sample t-test of estimated paramters
     if PlotFlag
@@ -64,7 +69,7 @@ for i = 1: Mo+1
         errhigh = Err./2;
         errlow  = Err./2;
         F = figure(LastNorder+i);
-        bar(x,data);
+        bar(x,data ,'FaceColor', [0.5 0.5 0.5]);
         title(titlestring);
         hold on
         er = errorbar(x,data,errlow,errhigh);
